@@ -732,49 +732,48 @@ U'_{\mu}(x) = P'_{\mu\nu}(x)P^{\dagger}_{\mu\nu}(x)U_{\mu}(x)
 
 
 ---
-<div style="text-align:left;font-size:0.7em;">
 
-# [Adversarial Training](https://mdpi-res.com/d_attachment/entropy/entropy-24-00415/article_deploy/entropy-24-00415-v2.pdf)
+<!-- <div style="text-align:left;font-size:0.7em;"> -->
+
+<!-- # [Adversarial Training](https://mdpi-res.com/d_attachment/entropy/entropy-24-00415/article_deploy/entropy-24-00415-v2.pdf) -->
 
 
-- Use Real-NVP flows as generator object
-- First update $v$ via 
+<!-- - Use Real-NVP flows as generator object -->
+<!-- - First update $v$ via  -->
 
-$$
-v' = v + \varepsilon \cdot t_{x}(x)
-$$
+<!-- $$ -->
+<!-- v' = v + \varepsilon \cdot t_{x}(x) -->
+<!-- $$ -->
 
-- Next we update $x$ using
+<!-- - Next we update $x$ using -->
 
-$$
-x' = x \odot \exp\left[\varepsilon \cdot s(v) \right] + t(v')\odot \exp\left[\varepsilon \cdot s(v')\right]
-$$
+<!-- $$ -->
+<!-- x' = x \odot \exp\left[\varepsilon \cdot s(v) \right] + t(v')\odot \exp\left[\varepsilon \cdot s(v')\right] -->
+<!-- $$ -->
 
-<div align="center">
+<!-- <div align="center"> -->
 
-> Note that we update $x$ in a single step
+<!-- > Note that we update $x$ in a single step -->
 
-</div>
+<!-- </div> -->
 
-- When a part of $x$ is updated through another part of $x$, the correlation between data will inevitably increase
-  - Thus, we can try instead only updating $x$ based on $v$
+<!-- - When a part of $x$ is updated through another part of $x$, the correlation between data will inevitably increase -->
+<!--   - Thus, we can try instead only updating $x$ based on $v$ -->
 
-</div>
+<!-- </div> -->
 
----
+<!-- <div style="text-align:left;"> -->
 
-<div style="text-align:left;">
+<!-- # Adversarial Training -->
 
-# Adversarial Training
+<!-- - At each epoch of training, generate samples through the <span id="red">transition kernel</span> -->
+<!--   - Treated as <span id="red">fake</span> samples -->
+<!-- - Use <span id="blue">MC algorithm </span> to compute $A(\xi'|\xi)$ -->
+<!--   - Treated as <span id="blue">true</span> samples -->
 
-- At each epoch of training, generate samples through the <span id="red">transition kernel</span>
-  - Treated as <span id="red">fake</span> samples
-- Use <span id="blue">MC algorithm </span> to compute $A(\xi'|\xi)$
-  - Treated as <span id="blue">true</span> samples
+<!-- - A discriminator will be trained to distinguish the <span id="blue">"true samples"</span> from the <span id="red">"fake samples"</span> -->
 
-- A discriminator will be trained to distinguish the <span id="blue">"true samples"</span> from the <span id="red">"fake samples"</span>
-
-- Our transition kernel will be trained to fool the discriminator.
+<!-- - Our transition kernel will be trained to fool the discriminator. -->
 <!-- <div id="note"> -->
 
 <!-- A discriminator will be trained to distinguish the <span id="blue">"true -->
@@ -783,33 +782,32 @@ $$
 <!-- </div> -->
 
 
-</div>
+<!-- </div> -->
 
----
+<!-- --- -->
 
-<div style="text-align:left;">
+<!-- <div style="text-align:left;"> -->
 
-# Adversarial Training
+<!-- # Adversarial Training -->
 
-- After getting new samples, we:
-  1. <span id="red">Drop</span> some samples of the buffer in a constant ratio
-  2. <span id="green">Insert</span> new accepted samples
-    - <span id="note">Improves the quality of the sampler</span>
-- Train using GANs w/ objective:
+<!-- - After getting new samples, we: -->
+<!--   1. <span id="red">Drop</span> some samples of the buffer in a constant ratio -->
+<!--   2. <span id="green">Insert</span> new accepted samples -->
+<!--     - <span id="note">Improves the quality of the sampler</span> -->
+<!-- - Train using GANs w/ objective: -->
 
-`\[
-\begin{align}
-\min_{K}\,\,\max_{D} V(D, K) =\,\,\min_{T}\,&\,\max_{D}\bigg\{\mathbb{E}_{x\sim B(x)}\left[D(x)\right]\\ &\,-\mathbb{E}_{z\sim\mathcal{N}(0, 1)}\left[D(K(z))\right]\bigg\}
-\end{align}
-\]`
+<!-- `\[ -->
+<!-- \begin{align} -->
+<!-- \min_{K}\,\,\max_{D} V(D, K) =\,\,\min_{T}\,&\,\max_{D}\bigg\{\mathbb{E}_{x\sim B(x)}\left[D(x)\right]\\ &\,-\mathbb{E}_{z\sim\mathcal{N}(0, 1)}\left[D(K(z))\right]\bigg\} -->
+<!-- \end{align} -->
+<!-- \]` -->
 
 <!-- $$ -->
 <!-- - \mathbb{E}_{z\sim\mathcal{N}(0, 1)}\left[D(K(z))\right] -->
 <!-- $$ -->
 
 
-</div>
-
+<!-- </div> -->
 
 ---
 
